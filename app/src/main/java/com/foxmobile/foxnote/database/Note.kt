@@ -10,5 +10,6 @@ data class Note(
     val title: String,
     val content: String,
     val date: String,
-    val dateTime: String
+    val dateTime: String,
+    val isPinned: Boolean = false
 )

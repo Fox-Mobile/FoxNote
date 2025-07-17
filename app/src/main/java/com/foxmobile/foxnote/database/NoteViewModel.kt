@@ -73,6 +73,12 @@ class NoteViewModel(
                     title = event.title
                 )
             }
+
+            is NoteEvent.SetIsPinned -> {
+                _state.value = _state.value.copy(
+                    isPinned = event.isPinned
+                )
+            }
         }
     }
 

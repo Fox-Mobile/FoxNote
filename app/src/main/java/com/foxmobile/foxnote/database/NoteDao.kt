@@ -14,6 +14,6 @@ interface NoteDao {
     @Delete
     suspend fun deleteNote(note: Note)
 
-    @Query("SELECT * FROM note ORDER BY dateTime DESC")
+    @Query("SELECT * FROM note ORDER BY isPinned DESC, dateTime DESC")
     fun getAll(): Flow<List<Note>>
 }
