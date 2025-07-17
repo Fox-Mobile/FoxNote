@@ -40,47 +40,46 @@ android {
         compose = true
     }
 }
+    dependencies {
+        //Auto generated dependencies
+        implementation(libs.androidx.core.ktx)
+        implementation(libs.androidx.lifecycle.runtime.ktx)
+        implementation(libs.androidx.activity.compose)
+        implementation(platform(libs.androidx.compose.bom))
+        implementation(libs.androidx.ui)
+        implementation(libs.androidx.ui.graphics)
+        implementation(libs.androidx.ui.tooling.preview)
+        implementation(libs.androidx.material3)
+        implementation(libs.androidx.material3.expressive)
 
-dependencies {
-    //Auto generated dependencies
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.androidx.activity.compose)
-    implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.ui)
-    implementation(libs.androidx.ui.graphics)
-    implementation(libs.androidx.ui.tooling.preview)
-    implementation(libs.androidx.material3)
-    implementation(libs.androidx.material3.android)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-    androidTestImplementation(platform(libs.androidx.compose.bom))
-    androidTestImplementation(libs.androidx.ui.test.junit4)
-    debugImplementation(libs.androidx.ui.tooling)
-    debugImplementation(libs.androidx.ui.test.manifest)
+        testImplementation(libs.junit)
+        androidTestImplementation(libs.androidx.junit)
+        androidTestImplementation(libs.androidx.espresso.core)
+        androidTestImplementation(platform(libs.androidx.compose.bom))
+        androidTestImplementation(libs.androidx.ui.test.junit4)
+        debugImplementation(libs.androidx.ui.tooling)
+        debugImplementation(libs.androidx.ui.test.manifest)
 
-    //Room
-    implementation(libs.androidx.room.runtime)
-    ksp(libs.androidx.room.compiler)
+        //Room
+        implementation(libs.androidx.room.runtime)
+        ksp(libs.androidx.room.compiler)
 
-    //Koin
-    implementation(libs.koin.android)
-    implementation(libs.koin.androidx.navigation)
-    implementation(libs.koin.androidx.compose)
+        //Koin
+        implementation(libs.koin.android)
+        implementation(libs.koin.androidx.navigation)
+        implementation(libs.koin.androidx.compose)
 
-    //view model
-    implementation(libs.androidx.lifecycle.viewmodel.ktx)
-    implementation(libs.androidx.activity.ktx)
+        //view model
+        implementation(libs.androidx.lifecycle.viewmodel.ktx)
+        implementation(libs.androidx.activity.ktx)
 
-    //Nav 3
-    implementation(libs.androidx.navigation3.ui)
-    implementation(libs.androidx.navigation3.runtime)
-    implementation(libs.androidx.lifecycle.viewmodel.navigation3)
-    implementation(libs.kotlinx.serialization.core)
+        //Nav 3
+        implementation(libs.androidx.navigation3.ui)
+        implementation(libs.androidx.navigation3.runtime)
+        implementation(libs.androidx.lifecycle.viewmodel.navigation3)
+        implementation(libs.kotlinx.serialization.core)
 
-    //Material
-    implementation(libs.androidx.material3)
-    implementation(libs.androidx.material.icons.core)
-    implementation(libs.androidx.material.icons.extended)
-}
+        //Material
+        implementation(libs.androidx.material.icons.core)
+        implementation(libs.androidx.material.icons.extended)
+    }
