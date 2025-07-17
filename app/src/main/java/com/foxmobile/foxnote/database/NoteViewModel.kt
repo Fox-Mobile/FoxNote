@@ -38,9 +38,10 @@ class NoteViewModel(
                 val content = _state.value.content
                 val date = LocalDate.now().toString()
                 val dateTime = LocalDateTime.now().toString()
+                val isPinned = _state.value.isPinned
 
                 val note = Note(
-                    id = id, title = title, content = content, date = date, dateTime = dateTime
+                    id = id, title = title, content = content, date = date, dateTime = dateTime, isPinned = isPinned
                 )
 
                 viewModelScope.launch {
@@ -49,7 +50,7 @@ class NoteViewModel(
 
                 _state.update {
                     it.copy(
-                        id = null, title = "", content = "", date = "", dateTime = ""
+                        id = null, title = "", content = "", date = "", dateTime = "", isPinned = false
                     )
                 }
             }
