@@ -81,7 +81,7 @@ fun NoteScreen(
             topBar = {
                 CenterAlignedTopAppBar(
                     title = {
-                        Text("FoxNote Mini", fontSize = 35.sp)
+                        Text("FoxNote", fontSize = 35.sp)
 
                     }
                 )
