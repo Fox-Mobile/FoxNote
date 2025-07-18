@@ -219,7 +219,7 @@ fun NoteScreen(
                         imageVector = Icons.Rounded.Check,
                         contentDescription = "Save note",
                         tint = Color.White,
-                        modifier = modifier.size(39.dp)
+                        modifier = modifier.size(48.dp)
                     )
                 }
             }
@@ -232,7 +232,7 @@ fun NoteScreen(
                 Icon(
                     imageVector = Icons.AutoMirrored.Rounded.ArrowBack,
                     contentDescription = "Back",
-                    modifier = modifier.size(39.dp),
+                    modifier = modifier.size(48.dp),
                     tint = Color.White
                 )
             }
