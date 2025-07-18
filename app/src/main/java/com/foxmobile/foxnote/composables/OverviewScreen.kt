@@ -41,7 +41,7 @@ fun OverviewScreen(
             TopAppBar(
                 title = {
                     Text(
-                        text = "FoxNote Mini",
+                        text = "FoxNote",
                         fontSize = 35.sp,
                     )
 

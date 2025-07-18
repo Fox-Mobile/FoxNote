@@ -21,10 +21,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.foxmobile.foxnote.R
 import com.foxmobile.foxnote.database.Note
 import com.foxmobile.foxnote.database.NoteEvent
 import com.foxmobile.foxnote.database.NoteViewModel
@@ -53,6 +56,33 @@ fun NoteContainer(
                 .wrapContentHeight()
         ) {
             Row {
+                IconButton(
+                    modifier = Modifier
+                        .padding(4.dp)
+                        .align(Alignment.CenterVertically)
+                        .background(MaterialTheme.colorScheme.background),
+
+                    onClick = {
+                        if (note.isPinned) {
+                            noteViewModel.onEvent(NoteEvent.SetIsPinned(false))
+                        }else noteViewModel.onEvent(NoteEvent.SetIsPinned(true))
+                        noteViewModel.onEvent(NoteEvent.SetID(note.id))
+                        noteViewModel.onEvent(NoteEvent.SetContent(note.content))
+                        noteViewModel.onEvent(NoteEvent.SetTitle(note.title))
+                        noteViewModel.onEvent(NoteEvent.SaveNote)
+                    }
+                ) {
+                    Icon(
+                        imageVector = if (note.isPinned) {
+                            ImageVector.vectorResource(R.drawable.round_push_pin_24)
+                        } else ImageVector.vectorResource(R.drawable.outline_push_pin_24),
+                        contentDescription = if (note.isPinned) {
+                            "Unpin note"
+                        } else "Pin note",
+                        tint = MaterialTheme.colorScheme.primary,
+                        modifier = Modifier.size(48.dp)
+                    )
+                }
                 Column(
                     modifier = Modifier.weight(1f),
                     verticalArrangement = Arrangement.Center,
