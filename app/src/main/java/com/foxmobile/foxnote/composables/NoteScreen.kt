@@ -74,7 +74,7 @@ fun NoteScreen(
     var title by remember(note.id) { mutableStateOf(note.title) }
     var content by remember(note.id) { mutableStateOf(note.content) }
     var isNoteSaved by  remember { mutableStateOf(false) }
-    var isPinned by remember { mutableStateOf(false) }
+    var isPinned by remember { mutableStateOf(note.isPinned) }
 
     Box(Modifier.fillMaxSize()) {
         Scaffold(
@@ -239,23 +239,25 @@ fun NoteScreen(
 
             IconButton(
                 onClick = {
-                    if (isPinned) {
-                        noteViewModel.onEvent(NoteEvent.SetIsPinned(false))
-                        isPinned = false
-                        Toast.makeText(
-                            context,
-                            "Please save note after unpinning it",
-                            Toast.LENGTH_LONG
-                        ).show()
-                    }else {
-                        noteViewModel.onEvent(NoteEvent.SetIsPinned(true))
-                        isPinned = true
-                        Toast.makeText(
-                            context,
-                            "Please save note after pinning it",
-                            Toast.LENGTH_LONG
-                        ).show()
-                    }
+                    if(title.isNotEmpty() || content.isNotEmpty()) {
+                        if (isPinned) {
+                            noteViewModel.onEvent(NoteEvent.SetIsPinned(false))
+                            isPinned = false
+                            Toast.makeText(
+                                context,
+                                "Please save note after unpinning it",
+                                Toast.LENGTH_LONG
+                            ).show()
+                        } else {
+                            noteViewModel.onEvent(NoteEvent.SetIsPinned(true))
+                            isPinned = true
+                            Toast.makeText(
+                                context,
+                                "Please save note after pinning it",
+                                Toast.LENGTH_LONG
+                            ).show()
+                        }
+                    }else Toast.makeText(context, "Can't pin/unpin empty note", Toast.LENGTH_LONG).show()
                 }
             ) {
                 Icon(
