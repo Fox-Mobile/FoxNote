@@ -2,6 +2,7 @@ package com.foxmobile.foxnote.composables
 
 import android.widget.Toast
 import androidx.activity.compose.LocalOnBackPressedDispatcherOwner
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -21,8 +22,11 @@ import androidx.compose.material.icons.rounded.Check
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.HorizontalFloatingToolbar
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -36,12 +40,15 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.foxmobile.foxnote.R
 import com.foxmobile.foxnote.database.Note
 import com.foxmobile.foxnote.database.NoteEvent
 import com.foxmobile.foxnote.database.NoteViewModel
@@ -67,6 +74,7 @@ fun NoteScreen(
     var title by remember(note.id) { mutableStateOf(note.title) }
     var content by remember(note.id) { mutableStateOf(note.content) }
     var isNoteSaved by  remember { mutableStateOf(false) }
+    var isPinned by remember { mutableStateOf(false) }
 
     Box(Modifier.fillMaxSize()) {
         Scaffold(
@@ -75,48 +83,6 @@ fun NoteScreen(
                     title = {
                         Text("FoxNote Mini", fontSize = 35.sp)
 
-                    },
-                    navigationIcon = {
-                        IconButton(
-                            onClick = {
-                                onBackArrowClick?.onBackPressed()
-                            }
-                        ) {
-                            Icon(
-                                imageVector = Icons.AutoMirrored.Rounded.ArrowBack,
-                                contentDescription = "Back",
-                                modifier = modifier.size(39.dp)
-                            )
-                        }
-                    },
-                    actions = {
-                        IconButton(
-                            onClick = {
-                                noteViewModel.onEvent(NoteEvent.SetID(note.id))
-                                noteViewModel.onEvent(NoteEvent.SetTitle(title))
-                                noteViewModel.onEvent(NoteEvent.SetContent(content))
-                                if (content.isNotEmpty() || title.isNotEmpty()) {
-                                    noteViewModel.onEvent(NoteEvent.SaveNote)
-                                    isNoteSaved = true
-                                    Toast.makeText(
-                                        context,
-                                        "Saving... To edit: view list first.",
-                                        Toast.LENGTH_LONG
-                                    ).show()
-                                } else Toast.makeText(
-                                    context,
-                                    "Can't save note - both fields are empty",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                            }
-                        ) {
-                            Icon(
-                                imageVector = Icons.Rounded.Check,
-                                contentDescription = "Save note",
-                                tint = Orange,
-                                modifier = modifier.size(39.dp)
-                            )
-                        }
                     }
                 )
             },
@@ -223,9 +189,87 @@ fun NoteScreen(
             }
         }
 
-        VerticalFloatingToolbar(
-            expanded = true
-        ) { }
+        HorizontalFloatingToolbar(
+            modifier = Modifier
+                .align(Alignment.BottomCenter)
+                .padding(bottom = 16.dp),
+            expanded = true,
+            floatingActionButton = {
+                FloatingActionButton (
+                    onClick = {
+                        noteViewModel.onEvent(NoteEvent.SetID(note.id))
+                        noteViewModel.onEvent(NoteEvent.SetTitle(title))
+                        noteViewModel.onEvent(NoteEvent.SetContent(content))
+                        if (content.isNotEmpty() || title.isNotEmpty()) {
+                            noteViewModel.onEvent(NoteEvent.SaveNote)
+                            isNoteSaved = true
+                            Toast.makeText(
+                                context,
+                                "Saving... To edit: view list first.",
+                                Toast.LENGTH_LONG
+                            ).show()
+                        } else Toast.makeText(
+                            context,
+                            "Can't save note - both fields are empty",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                ) {
+                    Icon(
+                        imageVector = Icons.Rounded.Check,
+                        contentDescription = "Save note",
+                        tint = Color.White,
+                        modifier = modifier.size(39.dp)
+                    )
+                }
+            }
+        ) {
+            IconButton(
+                onClick = {
+                    onBackArrowClick?.onBackPressed()
+                }
+            ) {
+                Icon(
+                    imageVector = Icons.AutoMirrored.Rounded.ArrowBack,
+                    contentDescription = "Back",
+                    modifier = modifier.size(39.dp),
+                    tint = Color.White
+                )
+            }
+
+            IconButton(
+                onClick = {
+                    if (isPinned) {
+                        noteViewModel.onEvent(NoteEvent.SetIsPinned(false))
+                        isPinned = false
+                        Toast.makeText(
+                            context,
+                            "Please save note after unpinning it",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }else {
+                        noteViewModel.onEvent(NoteEvent.SetIsPinned(true))
+                        isPinned = true
+                        Toast.makeText(
+                            context,
+                            "Please save note after pinning it",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+                }
+            ) {
+                Icon(
+                    imageVector = if (isPinned) {
+                        ImageVector.vectorResource(R.drawable.round_push_pin_24)
+                    } else ImageVector.vectorResource(R.drawable.outline_push_pin_24),
+                    contentDescription = if (isPinned) {
+                        "Unpin note"
+                    } else "Pin note",
+                    tint = Color.White,
+                    modifier = Modifier.size(48.dp)
+                )
+            }
+        }
     }
 }
 
