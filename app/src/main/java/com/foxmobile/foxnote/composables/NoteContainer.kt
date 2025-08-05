@@ -12,7 +12,9 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Delete
+import androidx.compose.material.icons.filled.PushPin
+import androidx.compose.material.icons.outlined.Delete
+import androidx.compose.material.icons.outlined.PushPin
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -21,16 +23,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.foxmobile.foxnote.R
-import com.foxmobile.foxnote.database.Note
-import com.foxmobile.foxnote.database.NoteEvent
-import com.foxmobile.foxnote.database.NoteViewModel
+import com.foxmobile.foxnote.database.note.Note
+import com.foxmobile.foxnote.database.note.NoteEvent
+import com.foxmobile.foxnote.database.note.NoteViewModel
 import com.foxmobile.foxnote.ui.theme.FoxNoteTheme
 import org.koin.androidx.compose.getViewModel
 import java.time.LocalDate
@@ -74,8 +73,8 @@ fun NoteContainer(
                 ) {
                     Icon(
                         imageVector = if (note.isPinned) {
-                            ImageVector.vectorResource(R.drawable.round_push_pin_24)
-                        } else ImageVector.vectorResource(R.drawable.outline_push_pin_24),
+                            Icons.Filled.PushPin
+                        } else Icons.Outlined.PushPin,
                         contentDescription = if (note.isPinned) {
                             "Unpin note"
                         } else "Pin note",
@@ -115,8 +114,8 @@ fun NoteContainer(
                     }
                 ) {
                     Icon(
-                        imageVector = Icons.Rounded.Delete,
-                        contentDescription = "Delete",
+                        imageVector = Icons.Outlined.Delete,
+                        contentDescription = "Delete note",
                         tint = MaterialTheme.colorScheme.primary,
                         modifier = Modifier.size(48.dp)
                     )

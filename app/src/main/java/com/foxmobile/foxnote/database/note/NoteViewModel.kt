@@ -1,4 +1,4 @@
-package com.foxmobile.foxnote.database
+package com.foxmobile.foxnote.database.note
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -15,7 +15,7 @@ class NoteViewModel(
     private val noteDao: NoteDao
 ) : ViewModel() {
     private val _state = MutableStateFlow(NoteState())
-    private val _notes = noteDao.getAll()
+    private val _notes = noteDao.getAllNotes()
 
     val state = combine(_state, _notes) { state, notes ->
         state.copy(
@@ -39,9 +39,10 @@ class NoteViewModel(
                 val date = LocalDate.now().toString()
                 val dateTime = LocalDateTime.now().toString()
                 val isPinned = _state.value.isPinned
+                val tagId = _state.value.tagID
 
                 val note = Note(
-                    id = id, title = title, content = content, date = date, dateTime = dateTime, isPinned = isPinned
+                    id = id, title = title, content = content, date = date, dateTime = dateTime, isPinned = isPinned, tagId = tagId
                 )
 
                 viewModelScope.launch {
@@ -78,6 +79,12 @@ class NoteViewModel(
             is NoteEvent.SetIsPinned -> {
                 _state.value = _state.value.copy(
                     isPinned = event.isPinned
+                )
+            }
+
+            is NoteEvent.SetTagID -> {
+                _state.value = _state.value.copy(
+                    tagID = event.tagID
                 )
             }
         }

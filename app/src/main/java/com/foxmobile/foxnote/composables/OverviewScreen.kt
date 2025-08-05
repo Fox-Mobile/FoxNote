@@ -22,8 +22,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.foxmobile.foxnote.database.Note
-import com.foxmobile.foxnote.database.NoteViewModel
+import com.foxmobile.foxnote.database.note.Note
+import com.foxmobile.foxnote.database.note.NoteEvent
+import com.foxmobile.foxnote.database.note.NoteViewModel
 import com.foxmobile.foxnote.ui.theme.FoxNoteTheme
 import org.koin.androidx.compose.getViewModel
 
