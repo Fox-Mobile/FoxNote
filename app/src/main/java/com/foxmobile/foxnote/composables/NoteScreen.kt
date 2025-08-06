@@ -151,7 +151,7 @@ fun NoteScreen(
                                 Text(
                                     text = tagId?.let { tagsState.tags.find { it.id == tagId }?.name }
                                         ?: "",
-                                    fontSize = 25.sp,
+                                    fontSize = 24.sp,
                                     color = Color.White,
                                     fontStyle = FontStyle.Italic
                                 )

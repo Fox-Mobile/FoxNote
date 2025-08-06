@@ -25,6 +25,7 @@ import androidx.compose.ui.unit.sp
 import com.foxmobile.foxnote.database.note.Note
 import com.foxmobile.foxnote.database.note.NoteEvent
 import com.foxmobile.foxnote.database.note.NoteViewModel
+import com.foxmobile.foxnote.database.tag.TagViewModel
 import com.foxmobile.foxnote.ui.theme.FoxNoteTheme
 import org.koin.androidx.compose.getViewModel
 
@@ -81,7 +82,7 @@ fun OverviewScreen(
                                 onNoteClick(note)
                             }) {
                         NoteContainer(
-                            note = note, noteViewModel = getViewModel<NoteViewModel>()
+                            note = note, noteViewModel = getViewModel<NoteViewModel>(), tagViewModel = getViewModel<TagViewModel>()
                         )
                     }
                 }
