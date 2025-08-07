@@ -144,7 +144,7 @@ fun NoteScreen(
                             ) {
                                 Icon(
                                     imageVector = Icons.AutoMirrored.Outlined.Label,
-                                    contentDescription = "Label",
+                                    contentDescription = "Tag",
                                     tint = MaterialTheme.colorScheme.primary,
                                     modifier = modifier.size(40.dp)
                                 )
