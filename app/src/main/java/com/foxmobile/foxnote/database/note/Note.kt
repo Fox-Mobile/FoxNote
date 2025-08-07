@@ -1,4 +1,4 @@
-package com.foxmobile.foxnote.database
+package com.foxmobile.foxnote.database.note
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -11,5 +11,6 @@ data class Note(
     val content: String,
     val date: String,
     val dateTime: String,
-    val isPinned: Boolean = false
+    val isPinned: Boolean = false,
+    val tagId: Int? = null
 )

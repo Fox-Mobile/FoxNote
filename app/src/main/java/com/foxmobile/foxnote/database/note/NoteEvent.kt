@@ -1,4 +1,4 @@
-package com.foxmobile.foxnote.database
+package com.foxmobile.foxnote.database.note
 
 sealed interface NoteEvent {
     data object SaveNote: NoteEvent
@@ -7,4 +7,5 @@ sealed interface NoteEvent {
     data class SetContent(val content: String): NoteEvent
     data class SetID(val id: Int?): NoteEvent
     data class SetIsPinned(val isPinned: Boolean): NoteEvent
+    data class SetTagID(val tagID: Int?): NoteEvent
 }

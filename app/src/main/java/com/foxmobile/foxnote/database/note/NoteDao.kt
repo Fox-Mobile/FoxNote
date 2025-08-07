@@ -1,4 +1,4 @@
-package com.foxmobile.foxnote.database
+package com.foxmobile.foxnote.database.note
 
 import androidx.room.Dao
 import androidx.room.Delete
@@ -15,5 +15,5 @@ interface NoteDao {
     suspend fun deleteNote(note: Note)
 
     @Query("SELECT * FROM note ORDER BY isPinned DESC, dateTime DESC")
-    fun getAll(): Flow<List<Note>>
+    fun getAllNotes(): Flow<List<Note>>
 }
