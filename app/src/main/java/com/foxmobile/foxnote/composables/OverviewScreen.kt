@@ -37,6 +37,7 @@ import com.foxmobile.foxnote.database.note.NoteEvent
 import com.foxmobile.foxnote.database.note.NoteViewModel
 import com.foxmobile.foxnote.database.tag.TagViewModel
 import com.foxmobile.foxnote.ui.theme.FoxNoteTheme
+import com.foxmobile.foxnote.ui.theme.brandColor
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.getViewModel
 
@@ -88,6 +89,7 @@ fun OverviewScreen(
                         Text(
                             text = "FoxNote",
                             fontSize = 35.sp,
+                            color = brandColor
                         )
 
                     },
@@ -97,7 +99,7 @@ fun OverviewScreen(
                                 drawerState.open()
                             }
                         }) {
-                            Icon(Icons.Outlined.Menu, contentDescription = "Open Drawer", tint = MaterialTheme.colorScheme.primary)
+                            Icon(Icons.Outlined.Menu, contentDescription = "Open Drawer", tint = brandColor)
                         }
                     },
                     modifier = Modifier.wrapContentHeight(),

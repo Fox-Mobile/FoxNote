@@ -17,6 +17,7 @@ import androidx.compose.material.icons.automirrored.outlined.Label
 import androidx.compose.material.icons.filled.PushPin
 import androidx.compose.material.icons.outlined.Delete
 import androidx.compose.material.icons.outlined.PushPin
+import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -37,10 +38,12 @@ import com.foxmobile.foxnote.database.note.NoteEvent
 import com.foxmobile.foxnote.database.note.NoteViewModel
 import com.foxmobile.foxnote.database.tag.TagViewModel
 import com.foxmobile.foxnote.ui.theme.FoxNoteTheme
+import com.foxmobile.foxnote.ui.theme.brandColor
 import org.koin.androidx.compose.getViewModel
 import java.time.LocalDate
 import java.time.LocalDateTime
 
+@OptIn(ExperimentalMaterial3ExpressiveApi::class)
 @Composable
 fun NoteContainer(
     modifier: Modifier = Modifier,
@@ -87,7 +90,7 @@ fun NoteContainer(
                         contentDescription = if (note.isPinned) {
                             "Unpin note"
                         } else "Pin note",
-                        tint = MaterialTheme.colorScheme.primary,
+                        tint = MaterialTheme.colorScheme.secondary,
                         modifier = Modifier.size(48.dp)
                     )
                 }
@@ -99,9 +102,10 @@ fun NoteContainer(
                         Text(
                             note.title.ifEmpty { "Untitled" },
                             color = MaterialTheme.colorScheme.primary,
-                            fontSize = 25.sp,
+                            fontSize = 30.sp,
                             textAlign = TextAlign.Center,
-                            modifier = Modifier.fillMaxWidth()
+                            modifier = Modifier.fillMaxWidth(),
+                            style = MaterialTheme.typography.titleMediumEmphasized
                         )
 
                         Row(
@@ -119,13 +123,13 @@ fun NoteContainer(
                                         Icon(
                                             imageVector = Icons.AutoMirrored.Outlined.Label,
                                             contentDescription = "Tag",
-                                            tint = MaterialTheme.colorScheme.primary,
+                                            tint = MaterialTheme.colorScheme.tertiary,
                                             modifier = Modifier.size(30.dp)
                                         )
                                         Text(
                                             text = note.tagId.let { tagsState.tags.find { it.id == note.tagId }?.name }
                                                 ?: "",
-                                            color = MaterialTheme.colorScheme.primary,
+                                            color = MaterialTheme.colorScheme.tertiary,
                                             fontSize = 24.sp,
                                             textAlign = TextAlign.End,
                                             modifier = modifier.padding(start = 4.dp)
@@ -135,7 +139,7 @@ fun NoteContainer(
                             }
                             Text(
                                 text = note.date,
-                                color = MaterialTheme.colorScheme.primary,
+                                color = MaterialTheme.colorScheme.tertiary,
                                 fontSize = 20.sp,
                                 textAlign = TextAlign.End,
                                 modifier = Modifier.weight(1f)
@@ -155,7 +159,7 @@ fun NoteContainer(
                     Icon(
                         imageVector = Icons.Outlined.Delete,
                         contentDescription = "Delete note",
-                        tint = MaterialTheme.colorScheme.primary,
+                        tint = MaterialTheme.colorScheme.secondary,
                         modifier = Modifier.size(48.dp)
                     )
                 }
