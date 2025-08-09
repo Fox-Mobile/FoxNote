@@ -32,7 +32,6 @@ import com.foxmobile.foxnote.database.tag.Tag
 import com.foxmobile.foxnote.database.tag.TagEvent
 import com.foxmobile.foxnote.database.tag.TagViewModel
 import com.foxmobile.foxnote.ui.theme.FoxNoteTheme
-import com.foxmobile.foxnote.ui.theme.Orange
 import org.koin.androidx.compose.getViewModel
 
 @Composable
@@ -55,7 +54,7 @@ fun TagContainer(
             Row {
                 Icon(
                     imageVector = Icons.AutoMirrored.Outlined.Label,
-                    tint = MaterialTheme.colorScheme.primary,
+                    tint = MaterialTheme.colorScheme.secondary,
                     contentDescription = "Tag",
                     modifier = Modifier
                         .align(Alignment.CenterVertically)
@@ -63,7 +62,7 @@ fun TagContainer(
                 )
                 Text(
                     text = tag.name,
-                    color = Color.White,
+                    color = MaterialTheme.colorScheme.onSurface,
                     textAlign = TextAlign.Start,
                     fontSize = 25.sp,
                     modifier = Modifier
@@ -82,7 +81,7 @@ fun TagContainer(
                 ) {
                     Icon(
                         imageVector = Icons.Outlined.Delete,
-                        tint = Color.White,
+                        tint = MaterialTheme.colorScheme.tertiary,
                         contentDescription = "Delete",
                         modifier = Modifier.size(48.dp)
                     )

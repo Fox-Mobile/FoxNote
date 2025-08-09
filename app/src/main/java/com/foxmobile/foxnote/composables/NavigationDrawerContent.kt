@@ -15,12 +15,16 @@ import androidx.compose.material3.MaterialExpressiveTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalDrawerSheet
 import androidx.compose.material3.NavigationDrawerItem
+import androidx.compose.material3.NavigationDrawerItemColors
+import androidx.compose.material3.NavigationDrawerItemDefaults
+import androidx.compose.material3.NavigationItemColors
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.foxmobile.foxnote.ui.theme.brandColor
 
 @Composable
 fun NavigationDrawerContent(
@@ -37,26 +41,36 @@ fun NavigationDrawerContent(
             Text(
                 "FoxNote",
                 modifier = Modifier.padding(16.dp),
-                style = MaterialTheme.typography.titleLarge
+                style = MaterialTheme.typography.titleLarge,
+                color = brandColor
             )
             HorizontalDivider()
 
             Text(
                 "Note add-ons",
                 modifier = Modifier.padding(16.dp),
-                style = MaterialTheme.typography.titleMedium
+                style = MaterialTheme.typography.titleMedium,
+                color = MaterialTheme.colorScheme.secondary
             )
             NavigationDrawerItem(
-                label = { Text("Tags", color = MaterialTheme.colorScheme.primary) },
+                label = { Text("Tags", color = MaterialTheme.colorScheme.onBackground) },
                 icon = {
                     Icon(
                         Icons.AutoMirrored.Outlined.Label,
                         contentDescription = null,
-                        tint = MaterialTheme.colorScheme.primary
+                        tint = MaterialTheme.colorScheme.tertiary
                     )
                 },
                 selected = false,
-                onClick = onTagsClicked
+                onClick = onTagsClicked,
+                colors = NavigationDrawerItemDefaults.colors(
+                    selectedContainerColor = MaterialTheme.colorScheme.primaryContainer,
+                    unselectedContainerColor = MaterialTheme.colorScheme.surface,
+                    selectedTextColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                    unselectedTextColor = MaterialTheme.colorScheme.onSurface,
+                    selectedIconColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                    unselectedIconColor = MaterialTheme.colorScheme.onSurfaceVariant
+                )
             )
         }
     }

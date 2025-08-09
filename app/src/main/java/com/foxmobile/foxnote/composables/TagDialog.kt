@@ -51,7 +51,6 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import com.foxmobile.foxnote.database.tag.TagEvent
 import com.foxmobile.foxnote.database.tag.TagViewModel
-import com.foxmobile.foxnote.ui.theme.Black
 import com.foxmobile.foxnote.ui.theme.FoxNoteTheme
 import org.koin.androidx.compose.getViewModel
 
@@ -81,7 +80,8 @@ fun TagDialog(
                     "Select tag or create new",
                     modifier = Modifier.padding(16.dp),
                     style = MaterialTheme.typography.titleLargeEmphasized,
-                    textAlign = TextAlign.Center
+                    textAlign = TextAlign.Center,
+                    color = MaterialTheme.colorScheme.primary
                 )
                 LazyColumn(
                     modifier = Modifier.weight(1f),
@@ -122,7 +122,7 @@ fun TagDialog(
                             ) {
                                 Text(
                                     text = "Create tag +",
-                                    color = MaterialTheme.colorScheme.primary,
+                                    color = MaterialTheme.colorScheme.secondary,
                                     fontSize = 20.sp
                                 )
                             }
@@ -142,21 +142,21 @@ fun TagDialog(
 
                                 textStyle = TextStyle(
                                     fontSize = 20.sp,
-                                    color = Color.White
+                                    color = MaterialTheme.colorScheme.onSurface
                                 ),
                                 placeholder = {
                                     Row(verticalAlignment = Alignment.CenterVertically) {
                                         Icon(
                                             imageVector = Icons.Outlined.Info,
                                             contentDescription = "Hint",
-                                            tint = Color.Gray,
+                                            tint = Color.DarkGray,
                                             modifier = Modifier.size(20.dp)
                                         )
                                         Spacer(Modifier.width(4.dp))
                                         Text(
                                             text = "name",
                                             fontSize = 20.sp,
-                                            color = Color.Gray,
+                                            color = Color.DarkGray,
                                             fontStyle = FontStyle.Italic
                                         )
                                     }
@@ -187,7 +187,7 @@ fun TagDialog(
                             onDismissRequest()
                         }) {
                         Text(
-                            text = "Cancel", color = Color.White, fontSize = 20.sp
+                            text = "Cancel", color = MaterialTheme.colorScheme.tertiary, fontSize = 20.sp
                         )
                     }
                 }

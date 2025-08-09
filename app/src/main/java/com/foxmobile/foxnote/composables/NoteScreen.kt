@@ -59,8 +59,8 @@ import com.foxmobile.foxnote.database.note.Note
 import com.foxmobile.foxnote.database.note.NoteEvent
 import com.foxmobile.foxnote.database.note.NoteViewModel
 import com.foxmobile.foxnote.database.tag.TagViewModel
-import com.foxmobile.foxnote.ui.theme.Black
 import com.foxmobile.foxnote.ui.theme.FoxNoteTheme
+import com.foxmobile.foxnote.ui.theme.brandColor
 import org.koin.androidx.compose.getViewModel
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -113,7 +113,7 @@ fun NoteScreen(
             topBar = {
                 CenterAlignedTopAppBar(
                     title = {
-                        Text("FoxNote", fontSize = 35.sp)
+                        Text("FoxNote", fontSize = 35.sp, color = brandColor)
 
                     }
                 )
@@ -145,15 +145,14 @@ fun NoteScreen(
                                 Icon(
                                     imageVector = Icons.AutoMirrored.Outlined.Label,
                                     contentDescription = "Tag",
-                                    tint = MaterialTheme.colorScheme.primary,
+                                    tint = MaterialTheme.colorScheme.tertiary,
                                     modifier = modifier.size(40.dp)
                                 )
                                 Text(
                                     text = tagId?.let { tagsState.tags.find { it.id == tagId }?.name }
                                         ?: "",
                                     fontSize = 24.sp,
-                                    color = Color.White,
-                                    fontStyle = FontStyle.Italic
+                                    color = MaterialTheme.colorScheme.onSurface
                                 )
                                 IconButton(
                                     modifier = modifier
@@ -172,7 +171,7 @@ fun NoteScreen(
                                         imageVector = Icons.Outlined.Close,
                                         contentDescription = "Remove tag",
                                         modifier = modifier.size(36.dp),
-                                        tint = Color.White
+                                        tint = MaterialTheme.colorScheme.tertiary
                                     )
                                 }
                             }
@@ -194,14 +193,14 @@ fun NoteScreen(
                     ),
 
                     colors = TextFieldDefaults.colors(
-                        focusedContainerColor = Black,
-                        unfocusedContainerColor = Black,
-                        disabledContainerColor = Black,
-                        cursorColor = Color.White,
-                        focusedTextColor = Color.White,
-                        unfocusedTextColor = Color.White,
-                        focusedPlaceholderColor = Color.Gray,
-                        unfocusedPlaceholderColor = Color.Gray,
+                        focusedContainerColor = MaterialTheme.colorScheme.background,
+                        unfocusedContainerColor = MaterialTheme.colorScheme.background,
+                        disabledContainerColor = MaterialTheme.colorScheme.background,
+                        cursorColor = MaterialTheme.colorScheme.onSurface,
+                        focusedTextColor = MaterialTheme.colorScheme.onSurface,
+                        unfocusedTextColor = MaterialTheme.colorScheme.onSurface,
+                        focusedPlaceholderColor = Color.DarkGray,
+                        unfocusedPlaceholderColor = Color.DarkGray,
                         focusedIndicatorColor = Color.Transparent,
                         unfocusedIndicatorColor = Color.Transparent,
                         disabledIndicatorColor = Color.Transparent
@@ -211,7 +210,7 @@ fun NoteScreen(
                             Icon(
                                 imageVector = Icons.Outlined.Info,
                                 contentDescription = "Hint",
-                                tint = Color.Gray,
+                                tint = Color.DarkGray,
                                 modifier = Modifier.size(20.dp)
                             )
                             Spacer(Modifier.width(4.dp))
@@ -240,14 +239,14 @@ fun NoteScreen(
                     ),
 
                     colors = TextFieldDefaults.colors(
-                        focusedContainerColor = Black,
-                        unfocusedContainerColor = Black,
-                        disabledContainerColor = Black,
-                        cursorColor = Color.White,
-                        focusedTextColor = Color.White,
-                        unfocusedTextColor = Color.White,
-                        focusedPlaceholderColor = Color.Gray,
-                        unfocusedPlaceholderColor = Color.Gray,
+                        focusedContainerColor = MaterialTheme.colorScheme.background,
+                        unfocusedContainerColor = MaterialTheme.colorScheme.background,
+                        disabledContainerColor = MaterialTheme.colorScheme.background,
+                        cursorColor = MaterialTheme.colorScheme.onSurface,
+                        focusedTextColor = MaterialTheme.colorScheme.onSurface,
+                        unfocusedTextColor = MaterialTheme.colorScheme.onSurface,
+                        focusedPlaceholderColor = Color.DarkGray,
+                        unfocusedPlaceholderColor = Color.DarkGray,
                         focusedIndicatorColor = Color.Transparent,
                         unfocusedIndicatorColor = Color.Transparent,
                         disabledIndicatorColor = Color.Transparent
@@ -257,7 +256,7 @@ fun NoteScreen(
                             Icon(
                                 imageVector = Icons.Outlined.Info,
                                 contentDescription = "Hint",
-                                tint = Color.Gray,
+                                tint = Color.DarkGray,
                                 modifier = Modifier.size(20.dp)
                             )
                             Spacer(Modifier.width(4.dp))
@@ -293,12 +292,13 @@ fun NoteScreen(
                             "Can't save note - both fields are empty",
                             Toast.LENGTH_SHORT
                         ).show()
-                    }
+                    },
+                    containerColor = MaterialTheme.colorScheme.primary
                 ) {
                     Icon(
                         imageVector = Icons.Outlined.Check,
                         contentDescription = "Save note",
-                        tint = Color.White,
+                        tint = MaterialTheme.colorScheme.onPrimary,
                         modifier = modifier.size(48.dp)
                     )
                 }
@@ -313,7 +313,7 @@ fun NoteScreen(
                     imageVector = Icons.AutoMirrored.Outlined.ArrowBack,
                     contentDescription = "Back",
                     modifier = modifier.size(48.dp),
-                    tint = Color.White
+                    tint = MaterialTheme.colorScheme.secondary
                 )
             }
 
@@ -347,7 +347,7 @@ fun NoteScreen(
                     contentDescription = if (isPinned) {
                         "Unpin note"
                     } else "Pin note",
-                    tint = Color.White,
+                    tint = MaterialTheme.colorScheme.secondary,
                     modifier = Modifier.size(48.dp)
                 )
             }
@@ -367,7 +367,7 @@ fun NoteScreen(
             ) {
                 Icon(
                     imageVector = Icons.AutoMirrored.Outlined.Label,
-                    tint = Color.White,
+                    tint = MaterialTheme.colorScheme.secondary,
                     contentDescription = "Add tag",
                     modifier = Modifier.size(48.dp)
                 )

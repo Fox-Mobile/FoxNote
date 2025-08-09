@@ -5,11 +5,11 @@ import com.foxmobile.foxnote.di.appModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
-class FoxNoteMini: Application() {
+class FoxNote: Application() {
     override fun onCreate() {
         super.onCreate()
         startKoin {
-            androidContext(this@FoxNoteMini)
+            androidContext(this@FoxNote)
             modules(appModule)
         }
     }

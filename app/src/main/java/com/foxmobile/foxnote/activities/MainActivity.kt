@@ -12,7 +12,7 @@ import com.foxmobile.foxnote.ui.theme.FoxNoteTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
-        enableEdgeToEdge(SystemBarStyle.dark(0))
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         setContent {
             FoxNoteTheme {
