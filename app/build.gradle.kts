@@ -39,6 +39,9 @@ android {
     buildFeatures {
         compose = true
     }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.15"
+    }
 }
     dependencies {
         //Auto generated dependencies
@@ -80,4 +83,8 @@ android {
         //Material
         implementation(libs.androidx.material.icons.core)
         implementation(libs.androidx.material.icons.extended)
+
+        //Widgets
+        implementation(libs.androidx.glance.appwidget)
+        implementation(libs.androidx.glance.material3)
     }
