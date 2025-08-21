@@ -281,7 +281,10 @@ fun NoteScreen(
                 FloatingActionButton (
                     onClick = {
                         noteViewModel.onEvent(NoteEvent.SetID(uiState.id))
-                        noteViewModel.onEvent(NoteEvent.SetTitle(title))
+                        if (title.isEmpty()) {
+                            noteViewModel.onEvent(NoteEvent.SetTitle("Untitled"))
+
+                        }else noteViewModel.onEvent(NoteEvent.SetTitle(title))
                         noteViewModel.onEvent(NoteEvent.SetContent(content))
                         if (content.isNotEmpty() || title.isNotEmpty()) {
                             noteViewModel.onEvent(NoteEvent.SaveNote)
@@ -293,12 +296,10 @@ fun NoteScreen(
                             Toast.LENGTH_SHORT
                         ).show()
                     },
-                    containerColor = MaterialTheme.colorScheme.primary
                 ) {
                     Icon(
                         imageVector = Icons.Outlined.Check,
                         contentDescription = "Save note",
-                        tint = MaterialTheme.colorScheme.onPrimary,
                         modifier = modifier.size(48.dp)
                     )
                 }

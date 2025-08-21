@@ -100,7 +100,7 @@ fun NoteContainer(
                     horizontalAlignment = Alignment.CenterHorizontally,
                     content = {
                         Text(
-                            note.title.ifEmpty { "Untitled" },
+                            note.title,
                             color = MaterialTheme.colorScheme.primary,
                             fontSize = 30.sp,
                             textAlign = TextAlign.Center,
@@ -132,7 +132,7 @@ fun NoteContainer(
                                             color = MaterialTheme.colorScheme.tertiary,
                                             fontSize = 24.sp,
                                             textAlign = TextAlign.End,
-                                            modifier = modifier.padding(start = 4.dp)
+                                            modifier = modifier.padding(start = 4.dp),
                                         )
                                     }
                                 }

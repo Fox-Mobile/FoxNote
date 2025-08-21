@@ -1,15 +1,18 @@
 package com.foxmobile.foxnote.database.note
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import java.time.LocalDate
 import java.time.LocalDateTime
+import kotlin.collections.emptyList
 
 class NoteViewModel(
     private val noteDao: NoteDao
@@ -23,6 +26,14 @@ class NoteViewModel(
         )
 
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), NoteState())
+
+    suspend fun getNotesForWidget(): List<Note> {
+        return try {
+            noteDao.getAllNotes().first()
+        } catch (e: Exception) {
+            emptyList()
+        }
+    }
 
     fun onEvent(event: NoteEvent) {
         when (event) {

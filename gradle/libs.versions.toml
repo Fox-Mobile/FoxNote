@@ -1,6 +1,6 @@
 [versions]
 activityKtx = "1.8.0"
-agp = "8.12.0"
+agp = "8.12.1"
 glanceAppwidget = "1.1.1"
 koinAndroid = "3.2.0-beta-1"
 koinAndroidxCompose = "3.2.0-beta-1"

@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">FoxNote</string>
+        <string name="widget_description_all_notes">All notes</string>
 </resources>
