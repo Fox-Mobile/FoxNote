@@ -40,6 +40,7 @@ import com.foxmobile.foxnote.R
 import com.foxmobile.foxnote.database.note.Note
 import com.foxmobile.foxnote.database.note.NoteDao
 import com.foxmobile.foxnote.database.note.NoteViewModel
+import com.foxmobile.foxnote.navigation.NavigationRoot
 import kotlinx.coroutines.flow.first
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.get
@@ -116,7 +117,7 @@ class NotesWidget() : GlanceAppWidget(), KoinComponent {
                     ) {
                         items(
                             items = notes,
-                            itemId = { note -> note.id?.toLong()!!}) { note ->
+                            itemId = { note -> note.id?.toLong()!! }) { note ->
                             NoteCard(note)
                             Spacer(GlanceModifier.height(8.dp))
                         }
@@ -131,36 +132,41 @@ class NotesWidget() : GlanceAppWidget(), KoinComponent {
         Box(
             modifier = GlanceModifier
                 .fillMaxWidth()
-                .background(GlanceTheme.colors.secondaryContainer)
-                .cornerRadius(12.dp)
-                .clickable {
-                    Log.d("NotesWidget", "Clicked on note: ${note.title}")
-                }
+                .wrapContentHeight()
+                .background(GlanceTheme.colors.tertiary)
+                .padding(4.dp)
         ) {
-            Column {
-                Text(
-                    note.title,
-                    style = TextStyle(
-                        color = GlanceTheme.colors.primary,
-                        fontSize = 28.sp,
-                        textAlign = TextAlign.Center,
-                        fontWeight = FontWeight.Medium
-                    ),
-                    modifier = GlanceModifier
-                        .fillMaxWidth()
-                        .wrapContentHeight()
-                )
+            Box(
+                modifier = GlanceModifier
+                    .background(GlanceTheme.colors.secondaryContainer)
+                    .cornerRadius(12.dp)
+                    .padding(8.dp)
+            ) {
+                Column {
+                    Text(
+                        note.title,
+                        style = TextStyle(
+                            color = GlanceTheme.colors.primary,
+                            fontSize = 28.sp,
+                            textAlign = TextAlign.Center,
+                            fontWeight = FontWeight.Medium
+                        ),
+                        modifier = GlanceModifier
+                            .fillMaxWidth()
+                            .wrapContentHeight()
+                    )
 
-                Text(
-                    note.content,
-                    style = TextStyle(
-                        color = GlanceTheme.colors.onSecondaryContainer,
-                        fontSize = 22.sp
-                    ),
-                    modifier = GlanceModifier
-                        .fillMaxWidth()
-                        .wrapContentHeight()
-                )
+                    Text(
+                        note.content,
+                        style = TextStyle(
+                            color = GlanceTheme.colors.onSecondaryContainer,
+                            fontSize = 22.sp
+                        ),
+                        modifier = GlanceModifier
+                            .fillMaxWidth()
+                            .wrapContentHeight()
+                    )
+                }
             }
         }
     }
