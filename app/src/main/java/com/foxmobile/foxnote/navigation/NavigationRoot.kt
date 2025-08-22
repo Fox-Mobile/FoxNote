@@ -25,13 +25,15 @@ data object OverviewScreenKey: NavKey
 @Serializable
 data object NoteScreenKey: NavKey
 
+
 @Composable
 fun NavigationRoot(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     val backStack = rememberNavBackStack(OverviewScreenKey)
     val noteViewModel = getViewModel<NoteViewModel>()
     val tagViewModel = getViewModel<TagViewModel>()
+
 
     NavDisplay(
         modifier = modifier,

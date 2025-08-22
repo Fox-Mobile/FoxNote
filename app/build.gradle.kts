@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.jetbrains.kotlin.serialization)
     id("com.google.devtools.ksp")
+    id("kotlin-parcelize")
 }
 
 android {
@@ -12,7 +13,7 @@ android {
 
     defaultConfig {
         applicationId = "com.foxmobile.foxnote"
-        minSdk = 26
+        minSdk = 33
         targetSdk = 36
         versionCode = 1
         versionName = "1.0"
@@ -38,6 +39,9 @@ android {
     }
     buildFeatures {
         compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.15"
     }
 }
     dependencies {
@@ -80,4 +84,8 @@ android {
         //Material
         implementation(libs.androidx.material.icons.core)
         implementation(libs.androidx.material.icons.extended)
+
+        //Widgets
+        implementation(libs.androidx.glance.appwidget)
+        implementation(libs.androidx.glance.material3)
     }

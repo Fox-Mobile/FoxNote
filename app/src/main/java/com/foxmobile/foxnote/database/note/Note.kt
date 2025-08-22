@@ -1,8 +1,11 @@
 package com.foxmobile.foxnote.database.note
 
+import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 @Entity
 data class Note(
     @PrimaryKey(autoGenerate = true)
@@ -13,4 +16,4 @@ data class Note(
     val dateTime: String,
     val isPinned: Boolean = false,
     val tagId: Int? = null
-)
+): Parcelable
