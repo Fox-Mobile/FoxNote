@@ -1,10 +1,12 @@
 package com.foxmobile.foxnote.widgets
 
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import androidx.compose.foundation.layout.height
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.glance.GlanceId
@@ -12,8 +14,10 @@ import androidx.glance.GlanceModifier
 import androidx.glance.GlanceTheme
 import androidx.glance.Image
 import androidx.glance.ImageProvider
+import androidx.glance.action.actionStartActivity
 import androidx.glance.action.clickable
 import androidx.glance.appwidget.GlanceAppWidget
+import androidx.glance.appwidget.action.actionStartActivity
 import androidx.glance.appwidget.cornerRadius
 import androidx.glance.appwidget.lazy.LazyColumn
 import androidx.glance.appwidget.lazy.items
@@ -37,6 +41,7 @@ import androidx.glance.text.Text
 import androidx.glance.text.TextAlign
 import androidx.glance.text.TextStyle
 import com.foxmobile.foxnote.R
+import com.foxmobile.foxnote.activities.NoteFromWidgetActivity
 import com.foxmobile.foxnote.database.note.Note
 import com.foxmobile.foxnote.database.note.NoteDao
 import com.foxmobile.foxnote.database.note.NoteViewModel
@@ -49,6 +54,11 @@ import kotlin.math.log
 
 class NotesWidget() : GlanceAppWidget(), KoinComponent {
     val noteViewModel: NoteViewModel by inject()
+    companion object {
+        // Define the constant here
+        const val EXTRA_NOTE_FROM_WIDGET = "note_id_from_widget_simple"
+    }
+
     override suspend fun provideGlance(context: Context, id: GlanceId) {
         val notes = try {
             noteViewModel.getNotesForWidget()
@@ -129,6 +139,7 @@ class NotesWidget() : GlanceAppWidget(), KoinComponent {
 
     @Composable
     fun NoteCard(note: Note) {
+        val context = androidx.glance.LocalContext.current
         Box(
             modifier = GlanceModifier
                 .fillMaxWidth()
@@ -141,6 +152,14 @@ class NotesWidget() : GlanceAppWidget(), KoinComponent {
                     .background(GlanceTheme.colors.secondaryContainer)
                     .cornerRadius(12.dp)
                     .padding(8.dp)
+                    .clickable(
+                        onClick = actionStartActivity(
+                            intent = Intent(context, NoteFromWidgetActivity::class.java).apply {
+                                putExtra(EXTRA_NOTE_FROM_WIDGET, note)
+                                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                            }
+                        )
+                    )
             ) {
                 Column {
                     Text(

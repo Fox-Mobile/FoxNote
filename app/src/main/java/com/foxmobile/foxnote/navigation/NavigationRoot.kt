@@ -29,7 +29,6 @@ data object NoteScreenKey: NavKey
 @Composable
 fun NavigationRoot(
     modifier: Modifier = Modifier,
-    noteFromWidget: Note? = null,
 ) {
     val backStack = rememberNavBackStack(OverviewScreenKey)
     val noteViewModel = getViewModel<NoteViewModel>()
