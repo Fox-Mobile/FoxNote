@@ -6,6 +6,7 @@ import com.foxmobile.foxnote.database.Database
 import com.foxmobile.foxnote.database.note.NoteViewModel
 import com.foxmobile.foxnote.database.tag.TagDao
 import com.foxmobile.foxnote.database.tag.TagViewModel
+import org.koin.android.ext.koin.androidApplication
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -27,8 +28,9 @@ val appModule = module {
         get<Database>().tagDao
     }
 
+
     viewModel<NoteViewModel> {
-        NoteViewModel(get())
+        NoteViewModel(get(), androidApplication())
     }
 
     viewModel<TagViewModel>{
