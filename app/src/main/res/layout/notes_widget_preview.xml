@@ -50,7 +50,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Meeting Summary"
-                android:textSize="18sp"
+                android:textSize="28sp"
                 android:textStyle="bold"
                 android:gravity="center_horizontal"
                 android:textColor="#FF406836"
@@ -60,7 +60,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Discussed Q3 goals and project timelines. Action items assigned."
-                android:textSize="14sp"
+                android:textSize="22sp"
                 android:textColor="#FF00513E" />
         </LinearLayout>
 
@@ -77,7 +77,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Ideas for new feature"
-                android:textSize="18sp"
+                android:textSize="28sp"
                 android:textStyle="bold"
                 android:gravity="center_horizontal"
                 android:textColor="#FF00513E"
@@ -87,7 +87,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Brainstormed concepts for user profile customization."
-                android:textSize="14sp"
+                android:textSize="22sp"
                 android:textColor="#FF424242" />
         </LinearLayout>
     </LinearLayout>
