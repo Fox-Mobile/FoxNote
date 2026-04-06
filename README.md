@@ -2,8 +2,6 @@
 
 ## Feature-Rich version of my note taking app only for Android.
 
-### active development
-
 ### Notice
 Icons used in this app are from Material Design Icons and Material Desing Symbols by Google.
         Copyright Google LLC.
